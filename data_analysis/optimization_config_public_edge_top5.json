@@ -1,0 +1,121 @@
+{
+  "hours": [
+    7,
+    8,
+    9,
+    17,
+    18,
+    19
+  ],
+  "budget_per_day": 3000000,
+  "choice_set": {
+    "candidate_limit": 15,
+    "training_top_k": 5,
+    "policy_top_k": 5,
+    "top_k": 5,
+    "minimum_training_demand_coverage": 0.95,
+    "training_selection": "observed_passengers_train_descending",
+    "policy_selection": "fitted_baseline_probability_descending"
+  },
+  "choice_model": {
+    "value_of_time_won_per_hour": 1101.0,
+    "initial_beta": [
+      -0.08,
+      -0.1,
+      -0.8
+    ],
+    "bounds": {
+      "beta_total_time": [
+        -5.0,
+        -1e-06
+      ],
+      "beta_walk_time_extra": [
+        -10.0,
+        0.0
+      ],
+      "beta_transfer": [
+        -20.0,
+        0.0
+      ]
+    },
+    "l2_regularization": 1e-05,
+    "max_iterations": 300,
+    "ftol": 1e-11,
+    "gtol": 1e-07,
+    "max_line_search_steps": 30
+  },
+  "split": {
+    "train_dates": [
+      "20260714",
+      "20260715",
+      "20260716",
+      "20260721",
+      "20260722",
+      "20260723",
+      "20260728",
+      "20260729"
+    ],
+    "test_dates": [
+      "20260730",
+      "20260804",
+      "20260805",
+      "20260806"
+    ]
+  },
+  "load_reference": {
+    "average_onboard": 55.0,
+    "enforced_as_constraint": false,
+    "purpose": "crowding_feature_and_post_policy_QA_only"
+  },
+  "policy": {
+    "max_edge_reward_won": 500.0,
+    "minimum_altprob": 0.0,
+    "max_extra_passenger_minutes_per_day": null,
+    "allow_no_bounty": true,
+    "minimum_training_improvement": 0.0,
+    "early_stop_infeasible_trials": true,
+    "bayesian": {
+      "seed": 42,
+      "n_trials": 100,
+      "n_startup_trials": 16,
+      "multivariate": true,
+      "group": true,
+      "ranges": {
+        "intercept": [
+          -24.0,
+          -2.0
+        ],
+        "low_crowding": [
+          0.0,
+          12.0
+        ],
+        "altprob": [
+          0.0,
+          20.0
+        ]
+      },
+      "enqueue": [
+        {
+          "intercept": -24.0,
+          "low_crowding": 2.0,
+          "altprob": 4.0
+        },
+        {
+          "intercept": -20.0,
+          "low_crowding": 4.0,
+          "altprob": 8.0
+        },
+        {
+          "intercept": -16.0,
+          "low_crowding": 6.0,
+          "altprob": 12.0
+        },
+        {
+          "intercept": -12.0,
+          "low_crowding": 6.0,
+          "altprob": 16.0
+        }
+      ]
+    }
+  }
+}
